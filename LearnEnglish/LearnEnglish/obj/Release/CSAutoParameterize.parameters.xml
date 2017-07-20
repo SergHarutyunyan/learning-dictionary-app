@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="LearnEnglish-Web.config Connection String" description="LearnEnglish Connection String used in web.config by the application to access the database." defaultValue="data source=SHARUTYU0517\SQLEXPRESS; database=LearnEnglish; User ID=test;Password=test123;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Sergey\.Harutyunyan\\Documents\\GIT\\Dictionary\\LearnEnglish\\LearnEnglish\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='LearnEnglish']/@connectionString" />
+  </parameter>
+  <parameter name="LearnEnglish.Models.EnglishWordsContext-Web.config Connection String" description="LearnEnglish.Models.EnglishWordsContext Connection String used in web.config by the application to access the database." defaultValue="LearnEnglish.Models.EnglishWordsContext_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Sergey\.Harutyunyan\\Documents\\GIT\\Dictionary\\LearnEnglish\\LearnEnglish\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='LearnEnglish.Models.EnglishWordsContext']/@connectionString" />
+  </parameter>
+</parameters>
