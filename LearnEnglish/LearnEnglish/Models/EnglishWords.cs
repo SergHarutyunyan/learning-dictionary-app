@@ -13,7 +13,7 @@ namespace LearnEnglish.Models
         [Key]
         public int id { get; set; }
         public string name { get; set; }
-        public string translation { get; set; }
+        public string armTranslation { get; set; }
         public bool isLearned { get; set; }
 
     }

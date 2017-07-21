@@ -1,34 +1,19 @@
-﻿@model IEnumerable<LearnEnglish.Models.EnglishWords> 
-
+﻿
 @{
-    ViewBag.title_1 = "Words";
-    ViewBag.title_2 = "Error";
+    Layout = null;
 }
-
-@using LearnEnglish.Models;
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <title>Start</title>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
 </head>
 <body>
-
-    @if (@Model != null)
-    {
-        <h2>@ViewBag.title_1</h2>
-        <ul>
-            @foreach (EnglishWords word in @Model)
-            {
-                <li>@word.name</li>
-            }
-        </ul>
-    }
-    else
-    {
-        <h2>@ViewBag.title_2</h2>
-    }
+    <button id="GetWords" type="button" onclick="location.href='@Url.Action("GetWords", "Home")'">List all words</button>
+    <button id="AddWord"  type="button" onclick="location.href='@Url.Action("AddWord", "Home")'">Add new Word</button> <br /> <br />
+    <button id="StartQuize" type="button" onclick="location.href='@Url.Action("QuizGetWords", "Home")'">Quiz Test</button>
 
 </body>
 </html>

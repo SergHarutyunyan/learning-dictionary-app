@@ -1,0 +1,37 @@
+﻿@using LearnEnglish.Models
+@model IEnumerable<EnglishWords> 
+
+@{
+    ViewBag.title_1 = "Words";
+    ViewBag.title_2 = "Error";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Start</title>
+</head>
+<body>
+
+    @if (@Model != null)
+    {
+        <h2>@ViewBag.title_1</h2>
+        <ul>
+            @foreach (EnglishWords word in @Model)
+            {
+                <li>@word.name : @word.armTranslation</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <h2>@ViewBag.title_2</h2>
+    }
+
+    @Html.ActionLink("Back to Start page", "Start")
+    
+
+</body>
+</html>

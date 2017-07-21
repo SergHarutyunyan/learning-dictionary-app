@@ -1,0 +1,47 @@
+﻿@model LearnEnglish.Models.EnglishWords
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Quiz</title>
+
+
+    @{
+        var myStyleSheet_1 = "~/Content/Timer.css";
+    }
+
+    <link rel="stylesheet" href="@Href(myStyleSheet_1)">
+    
+</head>
+<body>
+    
+    <h2 style="text-align:center">Quiz</h2>
+
+  
+    @*<nav class="controls">
+        <a href="#" class="button" onClick="stopwatch.start();">Start</a>
+        <a href="#" class="button" onClick="stopwatch.stop();">Stop</a>
+        <a href="#" class="button" onClick="stopwatch.restart();">Restart</a>
+        <a href="#" class="button" onClick="stopwatch.clear();">Clear Laps</a>
+    </nav>
+    <div class="stopwatch"></div>
+    <ul class="results"></ul>*@
+
+    <div class="stopwatch"></div>
+    <ul class="results"></ul>
+
+    <h2 id="Word" style="text-align:center">WORD</h2>
+
+    <div>
+        @Html.ActionLink("Back to List", "Start")
+    </div>
+
+    <script src="@Url.Content("~/Scripts/Timer.js")"></script>
+</body>
+</html>

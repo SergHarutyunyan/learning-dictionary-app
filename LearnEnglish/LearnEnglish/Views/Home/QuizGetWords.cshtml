@@ -1,0 +1,19 @@
+﻿@model LearnEnglish.Models.EnglishWords
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>QuizGetWords</title>
+</head>
+<body>
+    
+    <button a id="StartQuiz" onclick="location.href='@Url.Action("Quiz", "Home")'"> Start the Quiz </button>
+
+    <h3>@Model</h3>
+
+</body>
+</html>
