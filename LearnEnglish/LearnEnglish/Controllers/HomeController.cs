@@ -41,6 +41,16 @@ namespace LearnEnglish.Controllers
             return View();
         }
 
+
+        private void MsgBox(string sMessage)
+        {
+            string msg = "&lt;script language=\"javascript\"&gt;";
+            msg += "alert('" + sMessage + "');";
+            msg += "&lt;/script>";
+            Response.Write(msg);
+        }
+
+
         [HttpPost]
         public ActionResult AddWord(System.Web.Mvc.FormCollection FC)
         {
@@ -51,18 +61,24 @@ namespace LearnEnglish.Controllers
             if (newWord.name != null && newWord.name != "" &&
                newWord.armTranslation != null && newWord.armTranslation != "")
             {
+             
                 EnglishWordsContext EWC = new EnglishWordsContext();
                 EWC.AddNewWord(newWord);
-                MessageBox.Show("Record added succesfully");
+                MsgBox("Record added successfuly");             // NEED TO FIX
+               
+
             } else
             {
-                MessageBox.Show("Error: Try again");
+                MsgBox("Error: Try again");                     // NEED TO FIX
+
             }
 
 
             return RedirectToAction("AddWord");
         }
-       
+
+
+
 
         [HttpGet]
         public ActionResult QuizGetWords()

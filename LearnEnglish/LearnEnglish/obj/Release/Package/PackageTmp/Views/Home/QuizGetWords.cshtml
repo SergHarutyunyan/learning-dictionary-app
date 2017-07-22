@@ -1,8 +1,6 @@
 ﻿@model LearnEnglish.Models.EnglishWords
 
-@{
-    Layout = null;
-}
+
 
 <!DOCTYPE html>
 
@@ -14,6 +12,8 @@
 <body>
     
     <button a id="StartQuiz" onclick="location.href='@Url.Action("Quiz", "Home")'"> Start the Quiz </button>
+
+    <h3>@Model</h3>
 
 </body>
 </html>
