@@ -32,11 +32,18 @@
                             <input type="text" name="FilledTranslation" />                            
                         </td>
                     </tr>
-                    <tr><td><input type="submit" value="Check"  /> </td><td></td></tr>
+                    <tr>
+                        <td><input type="submit" value="Check"  /> </td>                      
+                    </tr>
                 </table>
             </form>
+        } else {
+            <h3> Quiz ended </h3>
+            <h4> Correct Answers: @ViewBag.correctAnswers/@ViewBag.totalRecords </h4>
         }
     </div>
+
+    <input type="submit" value="Abort" onclick="location.href='@Url.Action("Start", "Home")'"/>
 
     <br />
     @Html.ActionLink("Back to Start page", "Start");

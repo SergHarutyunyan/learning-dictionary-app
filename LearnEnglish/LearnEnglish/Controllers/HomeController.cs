@@ -24,7 +24,8 @@ namespace LearnEnglish.Controllers
 
         public ActionResult Start()
         {
-
+            allWordsID.Clear();
+            correctAnswers = 0;
             return View();
         }
 
@@ -112,21 +113,17 @@ namespace LearnEnglish.Controllers
         [HttpGet]
         public ActionResult QuizStart()
         {
-            
+            ViewBag.totalRecords = totalRecords;
+            ViewBag.correctAnswers = correctAnswers;
 
             if (allWordsID.Count != 0) {
                 EnglishWords EW = EWC.EngWords.SingleOrDefault(e => e.id == allWordsID.FirstOrDefault());
                 ViewBag.obj = EW;
-                ViewBag.totalRecords = totalRecords;
-                ViewBag.correctAnswers = correctAnswers;
+                
                 allWordsID.RemoveAt(0);
 
                 return View(EW);
-            } else
-            {
-
-            }
-
+            } 
 
             return View();
         }
