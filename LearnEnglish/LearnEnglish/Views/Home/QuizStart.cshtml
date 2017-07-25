@@ -1,0 +1,44 @@
+﻿@model LearnEnglish.Models.EnglishWords
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>QuizStart</title>
+</head>
+<body>
+    <div> 
+        @if (@Model != null)
+        {
+            <form method="post" action="QuizStart">
+                <input type="hidden" value="@Model.id" name="TranslationId" />
+                <input type="hidden" value="@Model.armTranslation" name="ArmTranslation" />
+
+                <h4 style="margin-left:50px"> All Words: @ViewBag.totalRecords </h4>
+                <h4 style="margin-left:50px"> Correct Answers: @ViewBag.correctAnswers </h4>
+                <table>
+                    <tr>
+                        <td><h3> Word : </h3></td>                                  
+                        <td><h3> @ViewBag.obj.name </h3></td>                        
+                    </tr>             
+                    <tr>
+                        <td><p> Translation </p></td>
+                        <td>
+                            <input type="text" name="FilledTranslation" />                            
+                        </td>
+                    </tr>
+                    <tr><td><input type="submit" value="Check"  /> </td><td></td></tr>
+                </table>
+            </form>
+        }
+    </div>
+
+    <br />
+    @Html.ActionLink("Back to Start page", "Start");
+</body>
+</html>

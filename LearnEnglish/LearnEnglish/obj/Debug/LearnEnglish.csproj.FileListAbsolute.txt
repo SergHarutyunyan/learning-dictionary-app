@@ -29,6 +29,8 @@ C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\b
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\LearnEnglish.dll
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\LearnEnglish.pdb
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\Antlr3.Runtime.dll
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\EntityFramework.dll
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\EntityFramework.SqlServer.dll
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\Microsoft.AI.DependencyCollector.dll
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -47,6 +49,8 @@ C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\b
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\System.Web.WebPages.dll
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\System.Web.WebPages.Razor.dll
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\WebGrease.dll
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\EntityFramework.xml
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\EntityFramework.SqlServer.xml
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\System.Web.Helpers.xml
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\System.Web.Mvc.xml
@@ -62,10 +66,6 @@ C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\b
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\Microsoft.AI.Web.xml
-C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\obj\Debug\LearnEnglish.csprojResolveAssemblyReference.cache
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\obj\Debug\LearnEnglish.dll
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\obj\Debug\LearnEnglish.pdb
-C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\EntityFramework.dll
-C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\EntityFramework.SqlServer.dll
-C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\EntityFramework.xml
-C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\EntityFramework.SqlServer.xml
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\obj\Debug\LearnEnglish.csprojResolveAssemblyReference.cache

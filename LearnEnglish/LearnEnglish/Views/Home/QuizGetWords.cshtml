@@ -11,9 +11,10 @@
 </head>
 <body>
     
-    <button a id="StartQuiz" onclick="location.href='@Url.Action("Quiz", "Home")'"> Start the Quiz </button>
+    <button id="StartQuiz" onclick="location.href='@Url.Action("QuizStart", "Home")'"> Start the Quiz </button>
 
-    <h3>@Model</h3>
+    <br />
+    @Html.ActionLink("Back to Start page", "Start");
 
 </body>
 </html>

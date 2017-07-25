@@ -40,6 +40,23 @@ namespace LearnEnglish.Models
             return true;
         }
 
+        public bool isLearnedFalse()
+        {
+            string CS = ConfigurationManager.ConnectionStrings["EnglishWordsContext"].ConnectionString;
+
+            using (SqlConnection con = new SqlConnection(CS))
+            {
+                SqlCommand cmd = new SqlCommand("UpdateIsLearned", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            return true;
+        }
+
+
 
     }
 
