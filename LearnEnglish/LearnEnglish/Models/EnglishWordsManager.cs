@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace LearnEnglish.Models
 {
-    public class EnglishWordsContext : DbContext
+    public class EnglishWordsManager : DbContext
     {
         public DbSet<EnglishWords> EngWords { get; set; }
 
@@ -40,9 +40,9 @@ namespace LearnEnglish.Models
             return true;
         }
 
-        public bool isLearnedFalse()
+        public bool makeIsLearnedToFalse()
         {
-            string CS = ConfigurationManager.ConnectionStrings["EnglishWordsContext"].ConnectionString;
+            string CS = ConfigurationManager.ConnectionStrings["EnglishWordsManager"].ConnectionString;
 
             using (SqlConnection con = new SqlConnection(CS))
             {

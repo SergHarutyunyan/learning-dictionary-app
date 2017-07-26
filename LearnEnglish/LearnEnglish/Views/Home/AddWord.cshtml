@@ -1,6 +1,7 @@
 ﻿@model LearnEnglish.Models.EnglishWords
 
 @{
+    string message = (string)ViewData["Response"];
     Layout = null;
 }
 
@@ -9,6 +10,15 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>AddWord</title>
+
+    <script>
+
+          function alertMessage(message) {
+              alert(message);
+          }
+
+    </script>
+
 </head>
 <body>
     <div>
@@ -25,11 +35,16 @@
                         <input type="text" name="armTranslation" autocomplete="off"/>
                     </td>
                 </tr>
-                <tr><td><input type="submit" value="Submit" /> </td><td></td></tr>
+                <tr><td><input type="submit" value="Submit"/> </td>
+                </tr>
             </table>
         </form>
     </div>
     <br />
     @Html.ActionLink("Back to Start page", "Start");
+
+  
+
+
 </body>
 </html>

@@ -13,7 +13,7 @@ namespace LearnEnglish.Controllers
     public class HomeController : Controller
     {
 
-        EnglishWordsContext EWC = new EnglishWordsContext();
+        EnglishWordsManager EnglishWordsModelManager = new EnglishWordsManager();
 
 
         public ActionResult Index()
@@ -23,7 +23,7 @@ namespace LearnEnglish.Controllers
 
         public ActionResult Start()
         {
-            allWordsID.Clear();
+            idList.Clear();
             correctAnswers = 0;
             return View();
         }
@@ -32,12 +32,9 @@ namespace LearnEnglish.Controllers
 
         [HttpGet]
         public ActionResult GetWords()
-        {
-
-            
-            List<EnglishWords> words = EWC.EngWords.ToList();
-
-            return View(words);
+        {     
+            List<EnglishWords> allWords = EnglishWordsModelManager.EngWords.ToList();
+            return View(allWords);
         }
 
 
@@ -49,64 +46,59 @@ namespace LearnEnglish.Controllers
 
 
         [HttpPost]
-        public ActionResult AddWord(EnglishWords EW)
-        {;
+        public ActionResult AddWord(EnglishWords passedEnglishWordParams) {
 
-            if (EW.name != null && EW.name != "" &&
-               EW.armTranslation != null && EW.armTranslation != "")
-            {             
+
+            if (passedEnglishWordParams.name != null && passedEnglishWordParams.name != "" &&
+               passedEnglishWordParams.armTranslation != null && passedEnglishWordParams.armTranslation != "")
+            {
                 //EWC.AddNewWord(EW);                      
                 try
                 {
-                    EWC.EngWords.Add(EW);
-                    EWC.SaveChanges();
-                   // TempData["notice"] = "Successfully registered";
+                    EnglishWordsModelManager.EngWords.Add(passedEnglishWordParams);
+                    EnglishWordsModelManager.SaveChanges();
+                    //ViewData["Response"] = "Successfully registered";
                 }
                 catch (System.Data.Entity.Infrastructure.DbUpdateException e)
                 {
-                    //TempData["notice"] = "Error: Record already existing";
-                    MessageBox.Show("Error: Record already existing");      // Need to fix (published version)
+                    ViewData["Response"] = "Error: Record already existing";            //   
                 }
-
-                           
-            } else
-                MessageBox.Show("Error: Try again");
-
-
-            MessageBox.Show("Record added succesfully");
+            }
+            else
+                ViewData["Response"] = "Error: Fill blanks";//
+            
 
             return RedirectToAction("AddWord");
         }
 
-        static List<int> allWordsID = new List<int>();
+        static List<int> idList = new List<int>();
         static int totalRecords;
         static int correctAnswers = 0;
 
-        //private int getTotalWordsCount()
-        //{
-        //    using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["EnglishWordsContext"].ConnectionString))
-        //    {
-        //        SqlCommand cmd = new SqlCommand("Select count(*) from EnglishWords where isLearned == '0' ", con);
-        //        con.Open();
-        //        int totalCount = (int)cmd.ExecuteScalar();
+        private int getNotLearnedWordsCount()
+        {
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["EnglishWordsContext"].ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Select count(*) from EnglishWords where isLearned == '0' ", con);
+                con.Open();
+                int totalCount = (int)cmd.ExecuteScalar();
 
-        //        return totalCount;
+                return totalCount;
+            }
+        }
 
-        //    }
 
-        //    return -1;
-        //}
 
         [HttpGet]
         public ActionResult QuizGetWords()
         {
-            allWordsID.Clear();
+            idList.Clear();
             correctAnswers = 0;
 
-            EWC.isLearnedFalse();
-            EWC.EngWords.ToList().ForEach(x => { if (x.isLearned == false) { allWordsID.Add(x.id); } });
-            totalRecords = allWordsID.Count;
-            allWordsID.Shuffle();
+            EnglishWordsModelManager.makeIsLearnedToFalse();
+            EnglishWordsModelManager.EngWords.ToList().ForEach(x => { if (x.isLearned == false) { idList.Add(x.id); } });
+            totalRecords = getNotLearnedWordsCount();
+            idList.Shuffle();
 
             return View();
         }
@@ -117,13 +109,13 @@ namespace LearnEnglish.Controllers
             ViewBag.totalRecords = totalRecords;
             ViewBag.correctAnswers = correctAnswers;
 
-            if (allWordsID.Count != 0) {
-                EnglishWords EW = EWC.EngWords.SingleOrDefault(e => e.id == allWordsID.FirstOrDefault());
-                ViewBag.obj = EW;
+            if (idList.Count != 0) {
+                EnglishWords EnglishWordsModelObject = EnglishWordsModelManager.EngWords.SingleOrDefault(em => em.id == idList.FirstOrDefault());
+                ViewBag.passedEnglishWordModelObject = EnglishWordsModelObject;
                 
-                allWordsID.RemoveAt(0);
+                idList.RemoveAt(0);
 
-                return View(EW);
+                return View(EnglishWordsModelObject);
             } 
 
             return View();
@@ -140,7 +132,7 @@ namespace LearnEnglish.Controllers
                     SqlCommand cmd = new SqlCommand("Update EnglishWords set isLearned = '1' where id = " + TC.TranslationId, con);
                     con.Open();
                     cmd.ExecuteNonQuery();
-                    correctAnswers++;
+                    correctAnswers++; ;
                 } 
             }
 
