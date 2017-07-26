@@ -13,7 +13,6 @@ namespace LearnEnglish.Controllers
     public class HomeController : Controller
     {
 
-
         EnglishWordsContext EWC = new EnglishWordsContext();
 
 
@@ -87,7 +86,7 @@ namespace LearnEnglish.Controllers
         //{
         //    using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["EnglishWordsContext"].ConnectionString))
         //    {
-        //        SqlCommand cmd = new SqlCommand("Select count(*) from EnglishWords", con);
+        //        SqlCommand cmd = new SqlCommand("Select count(*) from EnglishWords where isLearned == '0' ", con);
         //        con.Open();
         //        int totalCount = (int)cmd.ExecuteScalar();
 
@@ -101,7 +100,9 @@ namespace LearnEnglish.Controllers
         [HttpGet]
         public ActionResult QuizGetWords()
         {
-         
+            allWordsID.Clear();
+            correctAnswers = 0;
+
             EWC.isLearnedFalse();
             EWC.EngWords.ToList().ForEach(x => { if (x.isLearned == false) { allWordsID.Add(x.id); } });
             totalRecords = allWordsID.Count;

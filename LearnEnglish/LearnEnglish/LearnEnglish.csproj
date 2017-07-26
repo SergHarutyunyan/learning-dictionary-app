@@ -221,6 +221,16 @@
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LearnEnglish.BusinessObjects\LearnEnglish.BusinessObjects.csproj">
+      <Project>{c679f0b8-9d0d-4755-84ee-3b96bb0152b1}</Project>
+      <Name>LearnEnglish.BusinessObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LearnEnglish.DataAccess\LearnEnglish.DataAccess.csproj">
+      <Project>{95c9ceb3-b5d6-4638-b710-377503102e2a}</Project>
+      <Name>LearnEnglish.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

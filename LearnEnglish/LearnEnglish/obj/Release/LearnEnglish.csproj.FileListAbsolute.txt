@@ -69,3 +69,7 @@ C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\b
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\obj\Release\LearnEnglish.csprojResolveAssemblyReference.cache
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\obj\Release\LearnEnglish.dll
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\obj\Release\LearnEnglish.pdb
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\LearnEnglish.BusinessObjects.dll
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\LearnEnglish.DataAccess.dll
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\LearnEnglish.BusinessObjects.pdb
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\LearnEnglish.DataAccess.pdb

@@ -1,0 +1,7 @@
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish.DataAccess\bin\Release\LearnEnglish.DataAccess.dll
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish.DataAccess\bin\Release\LearnEnglish.DataAccess.pdb
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish.DataAccess\bin\Release\LearnEnglish.BusinessObjects.dll
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish.DataAccess\bin\Release\LearnEnglish.BusinessObjects.pdb
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish.DataAccess\obj\Release\LearnEnglish.DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish.DataAccess\obj\Release\LearnEnglish.DataAccess.dll
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish.DataAccess\obj\Release\LearnEnglish.DataAccess.pdb
