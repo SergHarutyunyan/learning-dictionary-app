@@ -1,0 +1,34 @@
+﻿@model LearnEnglish.BusinessObjects.EngWord
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DeleteWord</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+    <div>
+        <h3>Delete Word</h3>
+        <form method="POST" action="">
+            <table>
+                <tr>
+                    <td><p> Word </p></td>
+                    <td><input type="text" name="name" autocomplete="off" /> </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Submit" /> </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+    <br />
+    @Html.ActionLink("Back to Start page", "Start");
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+</body>
+</html>

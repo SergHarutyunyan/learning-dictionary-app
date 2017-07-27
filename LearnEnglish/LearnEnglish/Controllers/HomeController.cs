@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using LearnEnglish.DataAccess;
 using LearnEnglish.BusinessObjects;
+using System.Data.Entity;
 
 namespace LearnEnglish.Controllers
 {
@@ -46,10 +47,25 @@ namespace LearnEnglish.Controllers
         [HttpPost]
         public ActionResult AddWord(EngWord newWord) {
 
-            EngWordModelManager.AddNewWord(newWord);
+            EngWordModelManager.AddWord(newWord);         
             return RedirectToAction("AddWord");
         }
 
+        [HttpGet]
+        public ActionResult DeleteWord()
+        {
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult DeleteWord(EngWord word)
+        {
+
+            EngWordModelManager.DeleteWord(word);
+            return RedirectToAction("DeleteWord");
+        }
 
 
         static List<int> idList = new List<int>();

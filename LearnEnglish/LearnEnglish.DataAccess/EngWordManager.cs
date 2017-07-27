@@ -20,29 +20,46 @@ namespace LearnEnglish.DataAccess
 
         public DbSet<EngWord> EngWords { get; set; }
 
-        public List<EngWord> allWords { get { return EngWords.ToList(); } } 
+        public List<EngWord> allWords { get { return EngWords.ToList(); } }   
 
 
 
         /******************            ********************/
 
-        
-        public bool AddWord(EngWord word)
-        {          
-            try  
-            {           
-                SqlCommand command = new SqlCommand("AddNewWord", connection);
+        public string AddWord(EngWord word)
+        {
+            if (word.name != null && word.armTranslation != null)
+            {
+                try
+                {
+                    EngWords.Add(word);
+                    SaveChanges();
+
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+                {
+                    return e.ToString() + "\nError: Record already existing";   // FILL JAVASCRIPT
+                }
+            } else         
+                return "Error: Fill all words";
+            
+
+            return "Record added successfully";
+
+        }
+
+        public bool DeleteWord(EngWord word)
+        {
+         
+            try
+            {
+                SqlCommand command = new SqlCommand("DeleteWord", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 SqlParameter firstParameter = new SqlParameter();
                 firstParameter.ParameterName = "@name";
                 firstParameter.Value = word.name;
                 command.Parameters.Add(firstParameter);
-
-                SqlParameter secondParameter = new SqlParameter();
-                secondParameter.ParameterName = "@armTranslation";
-                secondParameter.Value = word.armTranslation;
-                command.Parameters.Add(secondParameter);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -55,34 +72,9 @@ namespace LearnEnglish.DataAccess
             {
                 connection.Close();
             }
-            return true;
-        }
-
-
-        public bool AddNewWord(EngWord word)
-        {
-            if (word.name != null && word.armTranslation != null)
-            {
-                try
-                {
-                    EngWords.Add(word);
-                    SaveChanges();
-
-                }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException e)
-                {
-                    return false;
-                }
-            } else
-            {
-                // return FILL ALL FIELDS
-                return false;
-            }
 
             return true;
-
         }
-
 
         public bool makeIsLearnedToFalse()
         {
