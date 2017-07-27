@@ -13,7 +13,7 @@ namespace LearnEnglish
     {
         protected void Application_Start()
         {
-            Database.SetInitializer<LearnEnglish.Models.EnglishWordsManager>(null);
+            Database.SetInitializer<LearnEnglish.DataAccess.EngWordManager>(null);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

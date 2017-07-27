@@ -1,5 +1,4 @@
-﻿using LearnEnglish.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,13 +6,15 @@ using System.Windows.Forms;
 using System.Web.Mvc;
 using System.Data.SqlClient;
 using System.Configuration;
+using LearnEnglish.DataAccess;
+using LearnEnglish.BusinessObjects;
 
 namespace LearnEnglish.Controllers
 {
     public class HomeController : Controller
     {
 
-        EnglishWordsManager EnglishWordsModelManager = new EnglishWordsManager();
+        EngWordManager EngWordModelManager = new EngWordManager();
 
 
         public ActionResult Index()
@@ -28,13 +29,10 @@ namespace LearnEnglish.Controllers
             return View();
         }
 
-
-
         [HttpGet]
         public ActionResult GetWords()
-        {     
-            List<EnglishWords> allWords = EnglishWordsModelManager.EngWords.ToList();
-            return View(allWords);
+        {           
+           return View(EngWordModelManager.allWords);
         }
 
 
@@ -46,30 +44,13 @@ namespace LearnEnglish.Controllers
 
 
         [HttpPost]
-        public ActionResult AddWord(EnglishWords passedEnglishWordParams) {
+        public ActionResult AddWord(EngWord newWord) {
 
-
-            if (passedEnglishWordParams.name != null && passedEnglishWordParams.name != "" &&
-               passedEnglishWordParams.armTranslation != null && passedEnglishWordParams.armTranslation != "")
-            {
-                //EWC.AddNewWord(EW);                      
-                try
-                {
-                    EnglishWordsModelManager.EngWords.Add(passedEnglishWordParams);
-                    EnglishWordsModelManager.SaveChanges();
-                    //ViewData["Response"] = "Successfully registered";
-                }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException e)
-                {
-                    ViewData["Response"] = "Error: Record already existing";            //   
-                }
-            }
-            else
-                ViewData["Response"] = "Error: Fill blanks";//
-            
-
+            EngWordModelManager.AddNewWord(newWord);
             return RedirectToAction("AddWord");
         }
+
+
 
         static List<int> idList = new List<int>();
         static int totalRecords;
@@ -77,7 +58,7 @@ namespace LearnEnglish.Controllers
 
         private int getNotLearnedWordsCount()
         {
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["EnglishWordsContext"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["EngWordManager"].ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand("Select count(*) from EnglishWords where isLearned == '0' ", con);
                 con.Open();
@@ -95,8 +76,8 @@ namespace LearnEnglish.Controllers
             idList.Clear();
             correctAnswers = 0;
 
-            EnglishWordsModelManager.makeIsLearnedToFalse();
-            EnglishWordsModelManager.EngWords.ToList().ForEach(x => { if (x.isLearned == false) { idList.Add(x.id); } });
+            EngWordModelManager.makeIsLearnedToFalse();
+            EngWordModelManager.EngWords.ToList().ForEach(x => { if (x.isLearned == false) { idList.Add(x.id); } });
             totalRecords = getNotLearnedWordsCount();
             idList.Shuffle();
 
@@ -110,7 +91,7 @@ namespace LearnEnglish.Controllers
             ViewBag.correctAnswers = correctAnswers;
 
             if (idList.Count != 0) {
-                EnglishWords EnglishWordsModelObject = EnglishWordsModelManager.EngWords.SingleOrDefault(em => em.id == idList.FirstOrDefault());
+                EngWord EnglishWordsModelObject = EngWordModelManager.EngWords.SingleOrDefault(em => em.id == idList.FirstOrDefault());
                 ViewBag.passedEnglishWordModelObject = EnglishWordsModelObject;
                 
                 idList.RemoveAt(0);
@@ -127,7 +108,7 @@ namespace LearnEnglish.Controllers
 
             if(TC.ArmTranslation == TC.FilledTranslation)
             {
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["EnglishWordsContext"].ConnectionString))
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["EngWordManager"].ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("Update EnglishWords set isLearned = '1' where id = " + TC.TranslationId, con);
                     con.Open();

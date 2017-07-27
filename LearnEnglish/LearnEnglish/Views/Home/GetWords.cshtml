@@ -1,5 +1,5 @@
-﻿@using LearnEnglish.Models
-@model IEnumerable<EnglishWords> 
+﻿@using LearnEnglish.BusinessObjects
+@model IEnumerable<EngWord> 
 
 @{
     ViewBag.title_1 = "Words";
@@ -19,7 +19,7 @@
     {
         <h2>@ViewBag.title_1</h2>
         <ul>
-            @foreach (EnglishWords word in @Model)
+            @foreach (EngWord word in @Model)
             {
                 <li>@word.name : @word.armTranslation</li>
             }
