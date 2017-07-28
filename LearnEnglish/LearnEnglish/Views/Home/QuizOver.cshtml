@@ -1,0 +1,23 @@
+﻿@model LearnEnglish.BusinessObjects.UserInfo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+</head>
+<body> 
+    <h3> Quiz ended </h3>
+    <h4> Name: @Model.getUserName() </h4>
+    <h4> Age: @Model.getAge() </h4>
+    <h4> Correct Answers:  @Model.getCorrectAnswers() / @Model.getNumberOfWords()  </h4>
+    <br />
+    @Html.ActionLink("Back to Start page", "Start");
+    
+</body>
+</html>

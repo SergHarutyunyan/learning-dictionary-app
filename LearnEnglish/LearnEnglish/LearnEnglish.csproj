@@ -148,7 +148,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Shuffler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -194,9 +193,10 @@
     <Content Include="Views\Home\GetWords.cshtml" />
     <Content Include="Views\Home\Start.cshtml" />
     <Content Include="Views\Home\AddWord.cshtml" />
-    <Content Include="Views\Home\QuizGetWords.cshtml" />
+    <Content Include="Views\Home\PrepareForQuiz.cshtml" />
     <Content Include="Views\Home\QuizStart.cshtml" />
     <Content Include="Views\Home\DeleteWord.cshtml" />
+    <Content Include="Views\Home\QuizOver.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

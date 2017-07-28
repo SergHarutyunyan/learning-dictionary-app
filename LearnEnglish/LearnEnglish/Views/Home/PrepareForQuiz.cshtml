@@ -1,0 +1,35 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>QuizPreparation</title>
+</head>
+<body>
+
+    <form method="POST" action="">
+        <table>
+            <tr>
+                <td><p> Your name </p></td>
+                <td><input type="text" name="FirstName" autocomplete="off" required /> </td>
+            </tr>
+            <tr>
+                <td><p> Your age </p></td>
+                <td><input type="number" name="Age" autocomplete="off" required min="8" max="100"/> </td>
+            </tr>
+            <tr>
+                <td><p> How many words do you want to test </p></td>
+                <td><input type="number" name="NumberOfWords" autocomplete="off"  min="2" max="@ViewBag.NotLearnedWordsCount" required/> </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Start the Quiz" /> </td>
+            </tr>
+        </table>
+    </form>
+
+    <br /> <br />
+    @Html.ActionLink("Back to Start page", "Start");
+
+</body>
+</html>

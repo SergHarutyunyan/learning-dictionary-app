@@ -25,15 +25,14 @@ namespace LearnEnglish.Controllers
 
         public ActionResult Start()
         {
-            idList.Clear();
-            correctAnswers = 0;
+            EngWordManager.idList.Clear();
             return View();
         }
 
         [HttpGet]
         public ActionResult GetWords()
         {           
-           return View(EngWordModelManager.allWords);
+           return View(EngWordModelManager.EngWords);
         }
 
 
@@ -65,57 +64,54 @@ namespace LearnEnglish.Controllers
 
             EngWordModelManager.DeleteWord(word);
             return RedirectToAction("DeleteWord");
+
         }
-
-
-        static List<int> idList = new List<int>();
-        static int totalRecords;
-        static int correctAnswers = 0;
-
-        private int getNotLearnedWordsCount()
-        {
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["EngWordManager"].ConnectionString))
-            {
-                SqlCommand cmd = new SqlCommand("Select count(*) from EnglishWords where isLearned == '0' ", con);
-                con.Open();
-                int totalCount = (int)cmd.ExecuteScalar();
-
-                return totalCount;
-            }
-        }
-
 
 
         [HttpGet]
-        public ActionResult QuizGetWords()
+        public ActionResult PrepareForQuiz()
         {
-            idList.Clear();
-            correctAnswers = 0;
 
+            ViewBag.NotLearnedWordsCount = EngWordModelManager.getNotLearnedWordsCount();
             EngWordModelManager.makeIsLearnedToFalse();
-            EngWordModelManager.EngWords.ToList().ForEach(x => { if (x.isLearned == false) { idList.Add(x.id); } });
-            totalRecords = getNotLearnedWordsCount();
-            idList.Shuffle();
+            EngWordManager.idList.Clear();
+            //correctAnswers = 0;            
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult PrepareForQuiz(System.Web.Mvc.FormCollection inputValues)
+        {
+            EngWordModelManager.CreateUser(
+                inputValues["FirstName"],
+                Convert.ToInt32(inputValues["Age"]),
+                Convert.ToInt32(inputValues["NumberOfWords"])
+                ,0
+                );
+
+            if (EngWordModelManager.getIdList(Convert.ToInt32(inputValues["NumberOfWords"])) != 0)
+                return RedirectToAction("QuizStart");
+            else
+                return RedirectToAction("PrepareForQuiz");
         }
 
         [HttpGet]
         public ActionResult QuizStart()
         {
-            ViewBag.totalRecords = totalRecords;
-            ViewBag.correctAnswers = correctAnswers;
+            if (EngWordManager.idList.Count != 0) {
+                EngWord EnglishWordsModelObject = EngWordModelManager.getNextWord();
+                //ViewBag.passedEnglishWordModelObject = EnglishWordsModelObject;                
 
-            if (idList.Count != 0) {
-                EngWord EnglishWordsModelObject = EngWordModelManager.EngWords.SingleOrDefault(em => em.id == idList.FirstOrDefault());
-                ViewBag.passedEnglishWordModelObject = EnglishWordsModelObject;
-                
-                idList.RemoveAt(0);
+                ViewData["total"] = EngWordModelManager.getUser().getNumberOfWords();
+                ViewData["correct"] = EngWordModelManager.getUser().getCorrectAnswers();
+
+                EngWordManager.idList.RemoveAt(0);
 
                 return View(EnglishWordsModelObject);
             } 
 
-            return View();
+            return View("QuizOver" , EngWordModelManager.getUser());
         }
 
         [HttpPost]
@@ -129,7 +125,7 @@ namespace LearnEnglish.Controllers
                     SqlCommand cmd = new SqlCommand("Update EnglishWords set isLearned = '1' where id = " + TC.TranslationId, con);
                     con.Open();
                     cmd.ExecuteNonQuery();
-                    correctAnswers++; ;
+                    EngWordModelManager.getUser().incrementCorrectAnswers();
                 } 
             }
 

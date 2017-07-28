@@ -45,6 +45,7 @@
     <Compile Include="EngWord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TranslationCheck.cs" />
+    <Compile Include="UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -21,12 +21,12 @@
                 <input type="hidden" value="@Model.id" name="TranslationId" autocomplete="off"/>
                 <input type="hidden" value="@Model.armTranslation" name="ArmTranslation" autocomplete="off"/>
 
-                <h4 style="margin-left:50px"> All Words: @ViewBag.totalRecords </h4>
-                <h4 style="margin-left:50px"> Correct Answers: @ViewBag.correctAnswers </h4>
+                <h4 style="margin-left:50px"> All Words: @ViewData["total"] </h4>
+                <h4 style="margin-left:50px"> Correct Answers: @ViewData["correct"] </h4>
                 <table>
                     <tr>
                         <td><h3> Word : </h3></td>                                  
-                        <td><h3> @ViewBag.passedEnglishWordModelObject.name </h3></td>                        
+                        <td><h3> @Model.name </h3></td>                        
                     </tr>             
                     <tr>
                         <td><p> Translation </p></td>
@@ -40,12 +40,8 @@
                     </tr>
                 </table>
             </form>
-        } else {
-            <h3> Quiz ended </h3>
-            <h4> Correct Answers: @ViewBag.correctAnswers/@ViewBag.totalRecords </h4>
-            <br />
-            @Html.ActionLink("Back to Start page", "Start");
         }
+
     </div>
 
    
