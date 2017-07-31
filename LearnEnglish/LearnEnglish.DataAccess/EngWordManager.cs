@@ -24,27 +24,31 @@ namespace LearnEnglish.DataAccess
 
         public static List<int> idList = new List<int>();
 
+        /****************** Get Word ********************/
+
+        public EngWord getWord(int id)
+        {
+            return EngWords.SingleOrDefault(em => em.id == id);
+        }
+
 
         /****************** Adding Word ********************/
 
         public string AddWord(EngWord word)
         {
-            if (word.name != null && word.armTranslation != null)
+
+            try
             {
-                try
-                {
-                    EngWords.Add(word);
-                    SaveChanges();
+                EngWords.Add(word);
+                SaveChanges();
 
-                }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException e)
-                {
-                    return e.ToString() + "\nError: Record already existing";   // FILL JAVASCRIPT
-                }
             }
-            else
-                return "Error: Fill all words";
-
+            catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+            {
+                return e.ToString() + "\nError: Record already existing";   // FILL JAVASCRIPT
+            }
+            
+           
 
             return "Record added successfully";
 
@@ -90,7 +94,7 @@ namespace LearnEnglish.DataAccess
 
                 SqlParameter firstParameter = new SqlParameter();
                 firstParameter.ParameterName = "@name";
-                firstParameter.Value = word.name;
+                firstParameter.Value =word.name;
                 command.Parameters.Add(firstParameter);
 
                 connection.Open();
@@ -166,12 +170,7 @@ namespace LearnEnglish.DataAccess
 
                 connection.Open();
                 SqlDataReader data = command.ExecuteReader();
-                //object[] result = null;
-                //while (read)
-                //{
-                //    data.Read();
-                //data.GetValues(result);
-                //}
+           
                 while(data.Read())
                 {
                     idList.Add((int)data.GetValue(0));

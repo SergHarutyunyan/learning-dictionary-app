@@ -30,9 +30,28 @@ namespace LearnEnglish.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetWords()
-        {           
-           return View(EngWordModelManager.EngWords);
+        public ActionResult SearchWord()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult SearchWord(string name)
+        {
+            var words = EngWordModelManager.EngWords.Where(a => a.name.Contains(name)).ToList();
+            if (words.Count <= 0)
+            {
+                return HttpNotFound();
+            }
+
+            return PartialView(words);
+        }
+
+        [HttpGet]
+        public ActionResult ListAllWords()
+        {
+            return View(EngWordModelManager.EngWords);
         }
 
 
@@ -46,15 +65,15 @@ namespace LearnEnglish.Controllers
         [HttpPost]
         public ActionResult AddWord(EngWord newWord) {
 
-            EngWordModelManager.AddWord(newWord);         
-            return RedirectToAction("AddWord");
+            EngWordModelManager.AddWord(newWord);
+            return RedirectToAction("ListAllWords");
         }
 
         [HttpGet]
-        public ActionResult DeleteWord()
+        public ActionResult DeleteWord(int id)
         {
-
-            return View();
+            EngWord word = EngWordModelManager.getWord(id);
+            return DeleteWord(word);
         }
 
 
@@ -63,7 +82,7 @@ namespace LearnEnglish.Controllers
         {
 
             EngWordModelManager.DeleteWord(word);
-            return RedirectToAction("DeleteWord");
+            return RedirectToAction("ListAllWords");
 
         }
 
@@ -72,7 +91,13 @@ namespace LearnEnglish.Controllers
         public ActionResult PrepareForQuiz()
         {
 
-            ViewBag.NotLearnedWordsCount = EngWordModelManager.getNotLearnedWordsCount();
+            if (EngWordModelManager.getNotLearnedWordsCount() <= 100)
+                ViewBag.NotLearnedWordsCount = EngWordModelManager.getNotLearnedWordsCount();
+            else
+                ViewBag.NotLearnedWordsCount = 100;
+
+
+
             EngWordModelManager.makeIsLearnedToFalse();
             EngWordManager.idList.Clear();
             //correctAnswers = 0;            
@@ -131,6 +156,7 @@ namespace LearnEnglish.Controllers
 
             return RedirectToAction("QuizStart");
         }
+
 
 
     }

@@ -10,24 +10,27 @@
     <meta name="viewport" content="width=device-width" />
     <title>AddWord</title>
 
+    @Scripts.Render("~/scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+
 
 </head>
 <body>
     <div>
         <h3>Add new Word</h3>
-        <form method="post" action="">
+        <form method="POST" action="">
             <table>
                 <tr>
                     <td><p> Word </p></td>
-                    <td><input type="text" name="name" autocomplete="off"/> </td>
+                    <td><input type="text" id="name" name="name" autocomplete="off"/> </td>
                 </tr>
                 <tr>
                     <td><p> Translation </p></td>
                     <td>
-                        <input type="text" name="armTranslation" autocomplete="off"/>
+                        <input type="text" id="armTranslation" name="armTranslation" autocomplete="off"/>
                     </td>
                 </tr>
-                <tr><td><input type="submit" value="Submit"/> </td>
+                <tr><td><input type="submit" id="submit" value="Submit"/> </td>
                 </tr>
             </table>
         </form>
@@ -35,7 +38,21 @@
     <br />
     @Html.ActionLink("Back to Start page", "Start");
 
-  
+
+    <script>
+        $(document).ready(function () {
+            $("#submit").on("click", function (e) {          
+                var name = $("#name").val();
+                var armTranslation = $("#armTranslation").val();
+
+                if (name == "" || armTranslation == "") {
+                    e.preventDefault();
+                    alert("Fill all blanks");
+                }
+
+            });
+        });
+    </script>
 
 
 </body>

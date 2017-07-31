@@ -20,7 +20,7 @@
             <table>
                 <tr>
                     <td><p> Word </p></td>
-                    <td><input type="text" name="name" autocomplete="off" /> </td>
+                    <td><input type="text" name="name" value="@Model.name" autocomplete="off" readonly/> </td>
                 </tr>
                 <tr>
                     <td><input type="submit" value="Submit" /> </td>
@@ -30,7 +30,7 @@
 
     </div>
     <br />
-    @Html.ActionLink("Back to Start page", "Start");
+    @Html.ActionLink("Back to list", "ListAllWords");
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 </body>
 </html>

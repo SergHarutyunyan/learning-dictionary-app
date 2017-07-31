@@ -72,3 +72,6 @@ C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\b
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\LearnEnglish.DataAccess.pdb
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\LearnEnglish.BusinessObjects.dll.config
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\LearnEnglish.DataAccess.dll.config
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\EntityFramework.dll
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\EntityFramework.SqlServer.dll
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish\bin\EntityFramework.SqlServer.xml

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<LearnEnglish.BusinessObjects.EngWord>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SearchWord</title>
+
+
+    @Scripts.Render("~/scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+
+</head>
+<body>
+
+    @if (Model != null)
+    {
+        <div id="searchresults">
+            <h3>Search Result</h3>
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li>@item.name</li>
+                }
+            </ul>
+        </div>
+    }
+
+    @using (Ajax.BeginForm("SearchWord", new AjaxOptions { UpdateTargetId = "results" }))
+    {
+        <input type="text" name="name" />
+        <input type="submit" value="Search" />
+    }
+    <div id="results"></div>
+
+   
+</body>
+</html>

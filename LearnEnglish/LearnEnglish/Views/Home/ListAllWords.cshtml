@@ -1,0 +1,57 @@
+﻿@model IEnumerable<LearnEnglish.BusinessObjects.EngWord>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListWords</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Add New word", "AddWord")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.armTranslation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isLearned)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.armTranslation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isLearned)
+            </td>
+            <td>              
+                @Html.ActionLink("Delete", "DeleteWord", new { id=item.id })
+            </td>
+        </tr>
+    }
+         
+    </table>
+
+    <br />
+
+    @Html.ActionLink("Back to Start page", "Start")
+
+
+</body>
+</html>
