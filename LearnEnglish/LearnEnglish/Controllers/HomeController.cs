@@ -69,7 +69,12 @@ namespace LearnEnglish.Controllers
             return RedirectToAction("ListAllWords");
         }
 
-        [HttpGet]
+
+        public ActionResult DeletionBox(int id)
+        {
+            return View();
+        }
+        
         public ActionResult DeleteWord(int id)
         {
             EngWord word = EngWordModelManager.getWord(id);

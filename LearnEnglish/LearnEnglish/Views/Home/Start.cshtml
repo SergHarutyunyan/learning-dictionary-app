@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -9,9 +8,11 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>View</title>
+
+
 </head>
 <body>
-    <button id="GetWords" type="button" onclick="location.href='@Url.Action("ListAllWords", "Home")'">List all words</button> <br /> <br /> 
+    <button id="GetWords" type="button" onclick="location.href='@Url.Action("ListAllWords", "Home")'">List all words</button>
     <button id="StartQuize" type="button" onclick="location.href='@Url.Action("PrepareForQuiz", "Home")'">Quiz Test</button>
     <button id="SearchWord" type="button" onclick="location.href='@Url.Action("SearchWord", "Home")'">Search Word</button>
 

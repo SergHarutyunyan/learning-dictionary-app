@@ -1,6 +1,5 @@
+C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish.BusinessObjects\bin\Debug\LearnEnglish.BusinessObjects.dll.config
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish.BusinessObjects\bin\Debug\LearnEnglish.BusinessObjects.dll
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish.BusinessObjects\bin\Debug\LearnEnglish.BusinessObjects.pdb
-C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish.BusinessObjects\obj\Debug\LearnEnglish.BusinessObjects.csprojResolveAssemblyReference.cache
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish.BusinessObjects\obj\Debug\LearnEnglish.BusinessObjects.dll
 C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish.BusinessObjects\obj\Debug\LearnEnglish.BusinessObjects.pdb
-C:\Users\Sergey.Harutyunyan\Documents\GIT\Dictionary\LearnEnglish\LearnEnglish.BusinessObjects\bin\Debug\LearnEnglish.BusinessObjects.dll.config

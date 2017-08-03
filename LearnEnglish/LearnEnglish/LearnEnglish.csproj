@@ -204,6 +204,7 @@
     <Content Include="Views\Home\QuizOver.cshtml" />
     <Content Include="Views\Home\ListAllWords.cshtml" />
     <Content Include="Views\Home\SearchWord.cshtml" />
+    <Content Include="Views\Home\DeletionBox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

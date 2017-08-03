@@ -18,6 +18,16 @@
 </head>
 <body>
 
+    
+    <div id="results">
+        @using (Ajax.BeginForm("SearchWord", new AjaxOptions { UpdateTargetId = "results" }))
+        {
+            <input type="text" name="name" autocomplete="off"/>
+            <input type="submit" value="Search" />
+        }
+    </div>
+
+
     @if (Model != null)
     {
         <div id="searchresults">
@@ -31,13 +41,8 @@
         </div>
     }
 
-    @using (Ajax.BeginForm("SearchWord", new AjaxOptions { UpdateTargetId = "results" }))
-    {
-        <input type="text" name="name" />
-        <input type="submit" value="Search" />
-    }
-    <div id="results"></div>
-
+    <br/>
+    @Html.ActionLink("Back to Start page", "Start");
    
 </body>
 </html>
