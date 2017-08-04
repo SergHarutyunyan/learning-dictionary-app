@@ -8,10 +8,13 @@
     <meta name="viewport" content="width=device-width" />
     <title>DeleteWord</title>
 
-    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
-
     @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
     @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+
+
+    <script>
+       
+    </script>
 
 </head>
 <body>
@@ -20,8 +23,9 @@
     {
         <fieldset>
             <p>Are you sure?</p>
-            <input type="submit" value="Yes" id="yes " />
-            <input type="submit" value="No" id="no" />
+
+            <input type="submit" value="Yes" id="yes" width="100" />
+            <button type="button" onclick="location.href='@Url.Action("ListAllWords", "Home")'" width="100" >No</button>
         </fieldset>
     }
 

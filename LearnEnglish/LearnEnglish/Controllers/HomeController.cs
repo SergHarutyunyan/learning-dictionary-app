@@ -61,36 +61,33 @@ namespace LearnEnglish.Controllers
             return View();
         }
 
-
         [HttpPost]
         public ActionResult AddWord(EngWord newWord) {
-
-            EngWordModelManager.AddWord(newWord);
-            return RedirectToAction("ListAllWords");
+          
+            return Json(EngWordModelManager.AddWord(newWord));             
+          
         }
 
 
+
+        [HttpGet]
         public ActionResult DeletionBox(int id)
         {
-            return View();
-        }
-        
-        public ActionResult DeleteWord(int id)
-        {
-            EngWord word = EngWordModelManager.getWord(id);
-            return DeleteWord(word);
+          
+            EngWord word = EngWordModelManager.EngWords.Find(id);
+            return View(word);
         }
 
 
-        [HttpPost]
-        public ActionResult DeleteWord(EngWord word)
-        {
 
+        [HttpPost, ActionName("DeletionBox")]
+        public ActionResult Deletion(int id)
+        {
+            EngWord word = EngWordModelManager.EngWords.Find(id);
             EngWordModelManager.DeleteWord(word);
             return RedirectToAction("ListAllWords");
 
-        }
-
+        }    
 
         [HttpGet]
         public ActionResult PrepareForQuiz()
@@ -102,10 +99,8 @@ namespace LearnEnglish.Controllers
                 ViewBag.NotLearnedWordsCount = 100;
 
 
-
             EngWordModelManager.makeIsLearnedToFalse();
-            EngWordManager.idList.Clear();
-            //correctAnswers = 0;            
+            EngWordManager.idList.Clear();        
 
             return View();
         }
@@ -130,8 +125,7 @@ namespace LearnEnglish.Controllers
         public ActionResult QuizStart()
         {
             if (EngWordManager.idList.Count != 0) {
-                EngWord EnglishWordsModelObject = EngWordModelManager.getNextWord();
-                //ViewBag.passedEnglishWordModelObject = EnglishWordsModelObject;                
+                EngWord EnglishWordsModelObject = EngWordModelManager.getNextWord();              
 
                 ViewData["total"] = EngWordModelManager.getUser().getNumberOfWords();
                 ViewData["correct"] = EngWordModelManager.getUser().getCorrectAnswers();
@@ -145,18 +139,12 @@ namespace LearnEnglish.Controllers
         }
 
         [HttpPost]
-        public ActionResult QuizStart(TranslationCheck TC)
+        public ActionResult QuizStart(TranslationCheck Check)
         {
 
-            if(TC.ArmTranslation == TC.FilledTranslation)
+            if(Check.ArmTranslation == Check.FilledTranslation)
             {
-                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["EngWordManager"].ConnectionString))
-                {
-                    SqlCommand cmd = new SqlCommand("Update EnglishWords set isLearned = '1' where id = " + TC.TranslationId, con);
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    EngWordModelManager.getUser().incrementCorrectAnswers();
-                } 
+                EngWordModelManager.AddScore(Check);
             }
 
             return RedirectToAction("QuizStart");

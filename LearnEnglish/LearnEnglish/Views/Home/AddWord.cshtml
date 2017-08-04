@@ -12,31 +12,57 @@
 
     <script src='@Url.Content("~/Scripts/jquery-1.12.4.min.js")' type="text/javascript"></script>
     <script src='@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")' type="text/javascript"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <div>
-        <h3>Add new Word</h3>
-        <form method="POST" action="">
-            <table>
-                <tr>
-                    <td><p> Word </p></td>
-                    <td><input type="text" id="name" name="name" required autocomplete="off"/> </td>
-                </tr>
-                <tr>
-                    <td><p> Translation </p></td>
-                    <td>
-                        <input type="text" id="armTranslation" name="armTranslation" required autocomplete="off"/>
-                    </td>
-                </tr>
-                <tr><td><input type="submit" id="submit" value="Submit"/> </td>
-                </tr>
-            </table>
-        </form>
-    </div>
-    <br />
-    @Html.ActionLink("Back to Start page", "Start");
 
+   @using (Html.BeginForm("AddWord", "Home", FormMethod.Post, new { autocomplete = "off", id = "form" }))
+   {
+    <fieldset>
+        @Html.HiddenFor(m => m.id)
+        @Html.LabelFor(m => m.name, "name")
+        <br />
+        @Html.TextBoxFor(m => m.name, new { pattern = @"^[a-z]+$" })
+        <br />
+        <br />
+        @Html.LabelFor(m => m.armTranslation, "armTranslation")
+        <br />
+        @Html.TextBoxFor(m => m.armTranslation)
+        <br />
+        @Html.HiddenFor(m => m.isLearned)
+        <br />
+        <input type="button" id="btnSubmit" name="btnSubmit" value="Add" />
+    </fieldset>
+
+
+        <div id="result"></div>
+
+   }
+
+    @Html.ActionLink("Back to Words", "ListAllWords")
+
+
+    <script>
+        $(document).ready(function (e) {
+            var url = '@Url.Action("AddWord", "Home")';
+            $("#btnSubmit").click(function () {
+
+                    $.post(url, $("#form").serialize(),
+                        function (data) {
+
+                            alert(data.result);
+                            if (data.isRedirect)
+                                window.location.href = '@Url.Content("~/Home/ListAllWords")';
+                        
+                    });
+
+
+                });
+
+        });
+
+
+    </script>
 
 </body>
 </html>

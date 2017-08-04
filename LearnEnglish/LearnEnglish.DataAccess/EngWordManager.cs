@@ -20,37 +20,38 @@ namespace LearnEnglish.DataAccess
 
         public DbSet<EngWord> EngWords { get; set; }
 
-        //public List<EngWord> allWords { get { return EngWords.ToList(); } }
-
         public static List<int> idList = new List<int>();
-
-        /****************** Get Word ********************/
-
-        public EngWord getWord(int id)
-        {
-            return EngWords.SingleOrDefault(em => em.id == id);
-        }
-
-
+ 
         /****************** Adding Word ********************/
 
-        public string AddWord(EngWord word)
+        public object AddWord(EngWord newWord)
         {
+
+            if (string.IsNullOrEmpty(newWord.name) || string.IsNullOrEmpty(newWord.armTranslation))
+                return new { result = "Fill all blanks", isRedirect = false  };
+
+
+            string check = newWord.armTranslation;
+            for (int i = 0; i < check.Length; i++)
+            {
+                if (!Char.IsLetter(check[i]))
+                {
+                    return new { result = "Incorrect input!!", isRedirect = false };
+                }
+            }
 
             try
             {
-                EngWords.Add(word);
-                SaveChanges();
+                EngWords.Add(newWord);
+                SaveChanges();            
 
             }
             catch (System.Data.Entity.Infrastructure.DbUpdateException e)
             {
-                return e.ToString() + "\nError: Record already existing";   // FILL JAVASCRIPT
+                return new { result = "Word already exists!!", isRedirect = false };
             }
-            
-           
 
-            return "Record added successfully";
+            return new { result = "Added successfully!!", isRedirect = true };
 
         }
 
@@ -84,10 +85,9 @@ namespace LearnEnglish.DataAccess
 
 
 
-        public bool DeleteWord(EngWord word)
+        public void DeleteWord(EngWord word)
         {
-            try
-            {
+           using (SqlConnection connection = new SqlConnection(engConnectionString)) { 
                 SqlCommand command = new SqlCommand("SimpleDeleteWord", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -100,24 +100,14 @@ namespace LearnEnglish.DataAccess
                 connection.Open();
                 command.ExecuteNonQuery();
             }
-            catch (SqlException e)
-            {
-                return false;
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return true;
         }
 
         /****************** IsLearned to False ********************/
 
-        public bool makeIsLearnedToFalse()
+        public void makeIsLearnedToFalse()
         {
 
-            try
+            using (SqlConnection connection = new SqlConnection(engConnectionString))
             {
                 SqlCommand cmd = new SqlCommand("UpdateIsLearned", connection);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -125,13 +115,6 @@ namespace LearnEnglish.DataAccess
                 connection.Open();
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException e)
-            {
-                return false;
-            }
-            finally { connection.Close(); }
-
-            return true;
         }
 
 
@@ -151,6 +134,7 @@ namespace LearnEnglish.DataAccess
             }
             finally { connection.Close(); }
         }
+
 
         public int getIdList(int numberOfRows)
         {
@@ -185,6 +169,18 @@ namespace LearnEnglish.DataAccess
             }
             finally { connection.Close(); }
         }
+
+        public void AddScore(TranslationCheck Check)
+        {
+            using (SqlConnection connection = new SqlConnection(engConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Update EnglishWords set isLearned = '1' where id = " + Check.TranslationId, connection);
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                getUser().incrementCorrectAnswers();
+            }
+        }
+
 
         public EngWord getNextWord()
         {
